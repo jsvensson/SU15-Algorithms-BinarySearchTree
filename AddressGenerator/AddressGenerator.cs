@@ -42,6 +42,8 @@ namespace AddressGenerator
 
                 addressList.Add($"{firstName} {lastName} ({phone})");
             }
+
+            addressList.Sort();
         }
 
         private List<string> ReadNamesFromFile(string fileName)
