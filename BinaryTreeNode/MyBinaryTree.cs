@@ -11,6 +11,8 @@ namespace BinaryTreeNode
         private BinaryTreeNode<T> RootNode { get; set; }
         public int Count { get; private set; }
         public int Depth => (int) Math.Log(Count, 2);  // TODO: stop lying
+        public int Size { get; private set; }
+        public bool IsBalanced { get; private set; }
 
         public void Add(T item)
         {
@@ -102,7 +104,7 @@ namespace BinaryTreeNode
                     return FindNodeByValue(node.Right, value);
             }
 
-            // Nothing found in entire tree
+            // Nothing found
             return null;
         }
 
