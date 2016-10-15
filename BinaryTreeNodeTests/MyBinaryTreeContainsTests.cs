@@ -11,12 +11,12 @@ namespace BinaryTreeNodeTests
     [TestClass]
     public class MyBinaryTreeContainsTests
     {
-        private MyBinaryTree tree;
+        private MyBinaryTree<string> tree;
 
         [TestInitialize]
         public void Initialize()
         {
-            tree = new MyBinaryTree();
+            tree = new MyBinaryTree<string>();
 
             tree.Add("January");
             tree.Add("February");

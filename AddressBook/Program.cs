@@ -11,7 +11,7 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            var tree = new MyBinaryTree();
+            var tree = new MyBinaryTree<string>();
 
             tree.Add("January");
             tree.Add("February");

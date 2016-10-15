@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace BinaryTreeNode
 {
-    public class MyBinaryTree : IMyCollection<string>
+    public class MyBinaryTree<T> : IMyCollection<T> where T : IComparable<T>
     {
-        private BinaryTreeNode<string> RootNode { get; set; }
+        private BinaryTreeNode<T> RootNode { get; set; }
         public int Count { get; private set; }
-        public int Depth => (int) Math.Log(Count, 2);
+        public int Depth => (int) Math.Log(Count, 2);  // TODO: stop lying
 
-        public void Add(string item)
+        public void Add(T item)
         {
             if (RootNode == null)
             {
-                RootNode = new BinaryTreeNode<string>();
+                RootNode = new BinaryTreeNode<T>();
             }
 
             RecursiveAdd(RootNode, null, item);
         }
 
-        private void RecursiveAdd(BinaryTreeNode<string> node, BinaryTreeNode<string> parent, string item, int depth = 0)
+        private void RecursiveAdd(BinaryTreeNode<T> node, BinaryTreeNode<T> parent, T item, int depth = 0)
         {
             // TODO: Handle inserting same value twice?
 
-            // If  node is empty, insert value
+            // If node is empty, insert value
             if (node.Value == null)
             {
                 Console.WriteLine($"Inserting new node at depth {depth}, value {item}\n");
@@ -37,27 +37,27 @@ namespace BinaryTreeNode
             }
 
             // Horrible non-generic string comparator
-            int comparator = string.Compare(item, node.Value);
+            int comparator = item.CompareTo(node.Value);
 
             switch (comparator)
             {
-                case -1:
+                case 1:
                     Console.WriteLine("Value is larger than current node: Checking right side");
 
                     if (node.Right == null)
                     {
                         Console.WriteLine("Creating new node on right side");
-                        node.Right = new BinaryTreeNode<string>();
+                        node.Right = new BinaryTreeNode<T>();
                     }
                     RecursiveAdd(node.Right, node, item, depth + 1);
                     break;
-                case 1:
+                case -1:
                     Console.WriteLine("Value is smaller than current node: Checking left side");
 
                     if (node.Left == null)
                     {
                         Console.WriteLine("Creating new node on left side");
-                        node.Left = new BinaryTreeNode<string>();
+                        node.Left = new BinaryTreeNode<T>();
                     }
 
                     RecursiveAdd(node.Left, node, item, depth + 1);
@@ -71,27 +71,27 @@ namespace BinaryTreeNode
             Count = 0;
         }
 
-        public bool Contains(string value)
+        public bool Contains(T value)
         {
-            BinaryTreeNode<string> result = FindNodeByValue(RootNode, value);
+            BinaryTreeNode<T> result = FindNodeByValue(RootNode, value);
             return result != null;
         }
 
-        public string Get()
+        public T Get()
         {
             throw new NotImplementedException();
         }
 
-        public string GetAndRemove()
+        public T GetAndRemove()
         {
             throw new NotImplementedException();
         }
 
-        private BinaryTreeNode<string> FindNodeByValue(BinaryTreeNode<string> node, string value)
+        private BinaryTreeNode<T> FindNodeByValue(BinaryTreeNode<T> node, T value)
         {
-            if (node?.Value == null) return null;
+            if (node == null || node.Value == null) return null;
 
-            int comparator = string.Compare(value, node.Value);
+            int comparator = value.CompareTo(node.Value);
             switch (comparator)
             {
                 case 0:
