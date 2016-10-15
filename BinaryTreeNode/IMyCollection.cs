@@ -7,6 +7,6 @@
         T Get();
         T GetAndRemove();
         void Clear();
-        bool Contains(T item);
+        bool Contains(T value);
     }
 }

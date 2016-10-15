@@ -15,6 +15,10 @@ namespace BinaryTreeNode
         public bool IsRootNode => Parent == null;
         public bool IsLeafNode => Left == null && Right == null;
 
+        public BinaryTreeNode()
+        {           
+        }
+
         public BinaryTreeNode(T item)
         {
             Value = item;
