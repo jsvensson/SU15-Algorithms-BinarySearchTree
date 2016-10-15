@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,34 +10,37 @@ namespace AddressBook
 {
     class Program
     {
+        private const string AddressBookDataFile = "addressbook.txt";
+
+        private static MyBinaryTree<string> addressBook;
+
+
         static void Main(string[] args)
         {
-            var tree = new MyBinaryTree<string>();
+            addressBook = new MyBinaryTree<string>();
 
-            tree.Add("January");
-            tree.Add("February");
-            tree.Add("March");
-            tree.Add("April");
-            tree.Add("May");
-            tree.Add("June");
-            tree.Add("July");
-            tree.Add("August");
-            tree.Add("September");
-            tree.Add("October");
-            tree.Add("November");
-            tree.Add("December");
+            List<string> addresses = ReadAddressbookData();
 
-            //for (int i = 1; i <= 1303; i++)
-            //{
-            //    tree.Add(i.ToString());
-            //}
+            for (int i = 0; i < addresses.Count; i++)
+            {
+                addressBook.Add(addresses[i]);
+            }
 
-            Console.WriteLine();
-            Console.WriteLine($"Tree has {tree.Count} nodes, depth {tree.Depth}");
+        }
 
-            Console.WriteLine($"Tree contains \"August\": {tree.Contains("August")}");
-            Console.WriteLine($"Tree contains \"Borktember\": {tree.Contains("Borktember")}");
+        private static List<string> ReadAddressbookData()
+        {
+            var nameList = new List<string>();
+            var fileStream = new StreamReader(AddressBookDataFile, Encoding.UTF8);
 
+            string line;
+            while ((line = fileStream.ReadLine()) != null)
+            {
+                nameList.Add(line);
+            }
+            fileStream.Close();
+
+            return nameList;
         }
     }
 }
