@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BinaryTreeNode
+﻿namespace BinaryTreeNode
 {
     public class BinaryTreeNode<T>
     {
@@ -14,14 +8,29 @@ namespace BinaryTreeNode
         public BinaryTreeNode<T> Right { get; set; }
         public bool IsRootNode => Parent == null;
         public bool IsLeafNode => Left == null && Right == null;
+        public int Depth => NodeDepth();
 
         public BinaryTreeNode()
-        {           
+        {
         }
 
         public BinaryTreeNode(T item)
         {
             Value = item;
+        }
+
+        private int NodeDepth()
+        {
+            int depth = 0;
+            var node = this;
+
+            while (node.Parent != null)
+            {
+                depth++;
+                node = node.Parent;
+            }
+
+            return depth;
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BinaryTreeNode
 {
@@ -14,27 +10,28 @@ namespace BinaryTreeNode
         public int Size { get; private set; }
         public bool IsBalanced { get; private set; }
 
+        public MyBinaryTree()
+        {
+            RootNode = new BinaryTreeNode<T>();
+        }
+
         public void Add(T item)
         {
-            if (RootNode == null)
-            {
-                RootNode = new BinaryTreeNode<T>();
-            }
-
             RecursiveAdd(RootNode, null, item);
         }
 
-        private void RecursiveAdd(BinaryTreeNode<T> node, BinaryTreeNode<T> parent, T item, int depth = 0)
+        private void RecursiveAdd(BinaryTreeNode<T> node, BinaryTreeNode<T> parent, T item)
         {
             // TODO: Handle inserting same value twice?
 
             // If node is empty, insert value
             if (node.Value == null)
             {
-                Console.WriteLine($"Inserting new node at depth {depth}, value {item}\n");
                 node.Value = item;
                 node.Parent = parent;
                 Count++;
+                Console.WriteLine($"Inserted new node at depth {node.Depth}, value {item}\n");
+
                 return;
             }
 
@@ -44,17 +41,17 @@ namespace BinaryTreeNode
             switch (comparator)
             {
                 case 1:
-                    Console.WriteLine("Value is larger than current node: Checking right side");
+                    Console.WriteLine($"Value at depth {node.Depth} is larger: Checking right side");
 
                     if (node.Right == null)
                     {
                         Console.WriteLine("Creating new node on right side");
                         node.Right = new BinaryTreeNode<T>();
                     }
-                    RecursiveAdd(node.Right, node, item, depth + 1);
+                    RecursiveAdd(node.Right, node, item);
                     break;
                 case -1:
-                    Console.WriteLine("Value is smaller than current node: Checking left side");
+                    Console.WriteLine($"Value at depth {node.Depth} is smaller: Checking left side");
 
                     if (node.Left == null)
                     {
@@ -62,7 +59,7 @@ namespace BinaryTreeNode
                         node.Left = new BinaryTreeNode<T>();
                     }
 
-                    RecursiveAdd(node.Left, node, item, depth + 1);
+                    RecursiveAdd(node.Left, node, item);
                     break;
             }
         }
