@@ -66,7 +66,7 @@ namespace BinaryTreeNode
 
         public void Clear()
         {
-            RootNode = null;
+            RootNode = new BinaryTreeNode<T>();
             Count = 0;
         }
 
