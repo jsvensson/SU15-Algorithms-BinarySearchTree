@@ -35,10 +35,8 @@ namespace BinaryTreeNode
                 return;
             }
 
-            // Horrible non-generic string comparator
-            int comparator = item.CompareTo(node.Value);
-
-            switch (comparator)
+            int comp = item.CompareTo(node.Value);
+            switch (comp)
             {
                 case 1:
                     Console.WriteLine($"Value at depth {node.Depth} is larger: Checking right side");
@@ -90,8 +88,8 @@ namespace BinaryTreeNode
         {
             if (node == null || node.Value == null) return null;
 
-            int comparator = value.CompareTo(node.Value);
-            switch (comparator)
+            int comp = value.CompareTo(node.Value);
+            switch (comp)
             {
                 case 0:
                     return node;
