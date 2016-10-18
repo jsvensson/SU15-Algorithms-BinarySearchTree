@@ -17,6 +17,7 @@ namespace BinaryTreeNode
 
         public void Add(T item)
         {
+            Console.WriteLine($"Inserting value {item}");
             RecursiveAdd(RootNode, null, item);
         }
 
@@ -30,7 +31,7 @@ namespace BinaryTreeNode
                 node.Value = item;
                 node.Parent = parent;
                 Count++;
-                Console.WriteLine($"Inserted new node at depth {node.Depth}, value {item}\n");
+                Console.WriteLine($"Inserted new node at depth {node.Depth}\n");
 
                 return;
             }
@@ -102,6 +103,5 @@ namespace BinaryTreeNode
             // Nothing found
             return null;
         }
-
     }
 }

@@ -24,7 +24,7 @@
             int depth = 0;
             var node = this;
 
-            while (node.Parent != null)
+            while (!node.IsRootNode)
             {
                 depth++;
                 node = node.Parent;
