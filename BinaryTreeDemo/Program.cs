@@ -33,6 +33,9 @@ namespace BinaryTreeDemo
             Console.WriteLine($"Tree contains \"August\": {tree.Contains("August")}");
             Console.WriteLine($"Tree contains \"Borktember\": {tree.Contains("Borktember")}");
 
+            Console.WriteLine("Ordered tree traversal:");
+            tree.TraverseTree();
+
         }
     }
 }

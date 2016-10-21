@@ -103,5 +103,19 @@ namespace BinaryTreeNode
             // Nothing found
             return null;
         }
+
+        private void InorderTraversal(BinaryTreeNode<T> node)
+        {
+            if (node == null) return;
+
+            InorderTraversal(node.Left);
+            Console.WriteLine(node.Value);
+            InorderTraversal(node.Right);
+        }
+
+        public void TraverseTree()
+        {
+            InorderTraversal(RootNode);
+        }
     }
 }
