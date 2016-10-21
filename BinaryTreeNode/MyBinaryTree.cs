@@ -18,10 +18,10 @@ namespace BinaryTreeNode
         public void Add(T item)
         {
             Console.WriteLine($"Inserting value {item}");
-            RecursiveAdd(RootNode, null, item);
+            RecursiveAdd(RootNode, item);
         }
 
-        private void RecursiveAdd(BinaryTreeNode<T> node, BinaryTreeNode<T> parent, T item)
+        private void RecursiveAdd(BinaryTreeNode<T> node, T item)
         {
             // TODO: Handle inserting same value twice?
 
@@ -29,7 +29,6 @@ namespace BinaryTreeNode
             if (node.Value == null)
             {
                 node.Value = item;
-                node.Parent = parent;
                 Count++;
                 Console.WriteLine($"Inserted new node at depth {node.Depth}\n");
 
@@ -45,9 +44,9 @@ namespace BinaryTreeNode
                     if (node.Right == null)
                     {
                         Console.WriteLine("Creating new node on right side");
-                        node.Right = new BinaryTreeNode<T>();
+                        node.Right = new BinaryTreeNode<T> { Parent = node };
                     }
-                    RecursiveAdd(node.Right, node, item);
+                    RecursiveAdd(node.Right, item);
                     break;
                 case -1:
                     Console.WriteLine($"Value at depth {node.Depth} is smaller: Checking left side");
@@ -55,10 +54,10 @@ namespace BinaryTreeNode
                     if (node.Left == null)
                     {
                         Console.WriteLine("Creating new node on left side");
-                        node.Left = new BinaryTreeNode<T>();
+                        node.Left = new BinaryTreeNode<T> { Parent = node };
                     }
 
-                    RecursiveAdd(node.Left, node, item);
+                    RecursiveAdd(node.Left, item);
                     break;
             }
         }
