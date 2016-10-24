@@ -103,18 +103,18 @@ namespace BinaryTreeNode
             return null;
         }
 
-        private void InorderTraversal(BinaryTreeNode<T> node)
+        private void InorderTraversal(BinaryTreeNode<T> node, Action<T> action)
         {
             if (node == null) return;
 
-            InorderTraversal(node.Left);
-            Console.WriteLine(node.Value);
-            InorderTraversal(node.Right);
+            InorderTraversal(node.Left, action);
+            action(node.Value);
+            InorderTraversal(node.Right, action);
         }
 
         public void TraverseTree()
         {
-            InorderTraversal(RootNode);
+            InorderTraversal(RootNode, v => Console.WriteLine(v));
         }
     }
 }
