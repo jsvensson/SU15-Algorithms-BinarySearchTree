@@ -4,8 +4,8 @@ namespace BinaryTreeNode
 {
     public class BinarySearchTree<T> : IMyCollection<T> where T : IComparable<T>
     {
-        private BinaryTreeNode<T> RootNode { get; set; }
-        public int Count { get; private set; }
+        protected BinaryTreeNode<T> RootNode { get; set; }
+        public int Count { get; protected set; }
         public int Depth => (int) Math.Log(Count, 2);  // TODO: stop lying
         public int Size { get; private set; }
         public bool IsBalanced { get; private set; }
@@ -18,10 +18,10 @@ namespace BinaryTreeNode
         public virtual void Add(T item)
         {
             Console.WriteLine($"Inserting value {item}");
-            RecursiveAdd(RootNode, item);
+            Insert(RootNode, item);
         }
 
-        private void RecursiveAdd(BinaryTreeNode<T> node, T item)
+        protected void Insert(BinaryTreeNode<T> node, T item)
         {
             // TODO: Handle inserting same value twice?
 
@@ -46,7 +46,7 @@ namespace BinaryTreeNode
                         Console.WriteLine("Creating new node on right side");
                         node.Right = new BinaryTreeNode<T> { Parent = node };
                     }
-                    RecursiveAdd(node.Right, item);
+                    Insert(node.Right, item);
                     break;
                 case -1:
                     Console.WriteLine($"Value at depth {node.Depth} is smaller: Checking left side");
@@ -57,7 +57,7 @@ namespace BinaryTreeNode
                         node.Left = new BinaryTreeNode<T> { Parent = node };
                     }
 
-                    RecursiveAdd(node.Left, item);
+                    Insert(node.Left, item);
                     break;
             }
         }
@@ -103,7 +103,7 @@ namespace BinaryTreeNode
             return null;
         }
 
-        private void InorderTraversal(BinaryTreeNode<T> node, Action<T> action)
+        protected virtual void InorderTraversal(BinaryTreeNode<T> node, Action<T> action)
         {
             if (node == null) return;
 

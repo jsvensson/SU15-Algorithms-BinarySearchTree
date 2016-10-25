@@ -10,16 +10,7 @@
         public bool IsLeafNode => Left == null && Right == null;
         public int Depth => NodeDepth();
 
-        public BinaryTreeNode()
-        {
-        }
-
-        public BinaryTreeNode(T item)
-        {
-            Value = item;
-        }
-
-        private int NodeDepth()
+        protected int NodeDepth()
         {
             int depth = 0;
             var node = this;

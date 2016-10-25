@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AATree.cs" />
+    <Compile Include="AATreeNode.cs" />
     <Compile Include="BinaryTreeNode.cs" />
     <Compile Include="IMyCollection.cs" />
     <Compile Include="BinarySearchTree.cs" />
