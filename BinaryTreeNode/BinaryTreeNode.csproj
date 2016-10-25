@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="BinaryTreeNode.cs" />
     <Compile Include="IMyCollection.cs" />
-    <Compile Include="MyBinaryTree.cs" />
+    <Compile Include="BinarySearchTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,12 +9,12 @@ namespace AddressBook
     {
         private const string AddressBookDataFile = "addressbook.txt";
 
-        private static MyBinaryTree<string> addressBook;
+        private static BinarySearchTree<string> addressBook;
 
 
         static void Main(string[] args)
         {
-            addressBook = new MyBinaryTree<string>();
+            addressBook = new BinarySearchTree<string>();
 
             List<string> addresses = ReadAddressbookData();
 

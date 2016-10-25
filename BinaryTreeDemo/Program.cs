@@ -7,7 +7,7 @@ namespace BinaryTreeDemo
     {
         static void Main(string[] args)
         {
-            var tree = new MyBinaryTree<string>();
+            var tree = new BinarySearchTree<string>();
 
             tree.Add("January");
             tree.Add("February");

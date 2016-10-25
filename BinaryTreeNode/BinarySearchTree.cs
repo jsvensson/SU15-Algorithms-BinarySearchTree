@@ -2,7 +2,7 @@
 
 namespace BinaryTreeNode
 {
-    public class MyBinaryTree<T> : IMyCollection<T> where T : IComparable<T>
+    public class BinarySearchTree<T> : IMyCollection<T> where T : IComparable<T>
     {
         private BinaryTreeNode<T> RootNode { get; set; }
         public int Count { get; private set; }
@@ -10,12 +10,12 @@ namespace BinaryTreeNode
         public int Size { get; private set; }
         public bool IsBalanced { get; private set; }
 
-        public MyBinaryTree()
+        public BinarySearchTree()
         {
             RootNode = new BinaryTreeNode<T>();
         }
 
-        public void Add(T item)
+        public virtual void Add(T item)
         {
             Console.WriteLine($"Inserting value {item}");
             RecursiveAdd(RootNode, item);
