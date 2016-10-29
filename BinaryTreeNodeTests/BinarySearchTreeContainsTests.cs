@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BinaryTreeNodeTests
 {
     [TestClass]
-    public class MyBinaryTreeContainsTests
+    public class BinarySearchTreeContainsTests
     {
         private BinarySearchTree<string> tree;
 
